@@ -1,6 +1,10 @@
 Control software
 ====
 
-This directory must contain code for control software which is used by the vehicle to participate in the competition and which was developed by the participants.
+-PROGRAM ONE IS INCLUDED, WHERE WE PLACE A DIRECTION AND LINEAR ADVANCE CONTROL, AS WELL AS THE CONNECTION AND TESTING OF ALL THE SENSORS.
 
-All artifacts required to resolve dependencies and build the project must be included in this directory as well.
+-THE PROGRAM IS COMPILED AND READ WITH ARDUINO, WHICH IS DOWNLOADED FROM THE OFFICIAL ARDUINO SITE.
+
+LINK:https://www.arduino.cc/en/software
+
+-I INCLUDE THE .ZIP LIBRARIES TO COMPILE THE PROJECT.
