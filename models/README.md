@@ -11,4 +11,6 @@ Configuraciones:
 
 -Sin balsa
 
--Soportes -Concéntricos
+-Soportes 
+
+-Concéntricos
