@@ -322,110 +322,112 @@ void loop() {
         }
 
   //**************************************CONTROL**************************************
-      //PARED 1
-        if(PARED == 1){
-          //VARIABLES
-            SM = (DIST_IZQUIERDA);
-            SD = (20);
-          //PID
-            ET = SD - SM; //ERROR PROPORCIONAL 
-            dE = (ET - Ep)/t; //ERROR DIFERENCIAL
-            Ep = ET;
-            iE = Eip + (t*ET); //ERROR INTEGRAL
-            Eip = Ei;
-            t = t + (0.053 + (PID/100)); //TIEMPO 
-            PID = (KP*ET)+(KI*iE)+(KD*dE); //PID
-            if(DIST_IZQUIERDA < 40 || DIST_IZQUIERDA < 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*10);
-            }
-            //ULTRASONICO
-            if(DIST_DERECHA < 40  || DIST_DERECHA < 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*5);
-            }
-          //VARIABLES
-            SM_2 = (ANGULO);
-            SD_2 = (90*ZONA);
-          //PID
-            //GIROSCOPIO
-            ET_2 = SD_2 - SM_2; //ERROR PROPORCIONAL 
-            dE_2 = (ET_2 - Ep_2)/t_2; //ERROR DIFERENCIAL
-            Ep_2 = ET_2;
-            iE_2 = Eip_2 + (t_2*ET_2); //ERROR INTEGRAL
-            Eip_2 = Ei_2;
-            t_2 = t_2 + (0.053 + (PID_2/100)); //TIEMPO 
-            PID_2 = (KP*ET_2)+(KI*iE_2)+(KD*dE_2); //PID
-            if(PID > 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*10);
-            }
-            if(PID < 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*5);
-            }
-            //ULTRASONICO
-            if(DIST_FRENTE < 80 && DIST_FRENTE > 0){ //GIRO
-              VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-              GIRO.write(L_DERECHA); delay(500);
-              VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-              delay(1300);
-              GIRO.write(L_IZQUIERDA); delay(100); GIRO.write(L_CENTRO_D); delay(100); ACTIVO = 2;
-              VELOCIDAD = 80; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-            }
-        }
-      //PARED 2
-        if(PARED == 2){
-          //VARIABLES
-            SM = (DIST_DERECHA);
-            SD = (20);
-          //PID
-            ET = SD - SM; //ERROR PROPORCIONAL 
-            dE = (ET - Ep)/t; //ERROR DIFERENCIAL
-            Ep = ET;
-            iE = Eip + (t*ET); //ERROR INTEGRAL
-            Eip = Ei;
-            t = t + (0.053 + (PID/100)); //TIEMPO 
-            PID = (KP*ET)+(KI*iE)+(KD*dE); //PID
-            if(DIST_DERECHA < 40 || DIST_DERECHA < 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*10);
-            }
-            //ULTRASONICO
-            if(DIST_IZQUIERDA < 40  || DIST_IZQUIERDA < 0){
-              GIRO.write(L_DERECHA);
-              delay(PID*5);
-            }
-          //VARIABLES
-            SM_2 = (ANGULO);
-            SD_2 = (90*ZONA);
-          //PID
-            //GIROSCOPIO
-            ET_2 = SD_2 - SM_2; //ERROR PROPORCIONAL 
-            dE_2 = (ET_2 - Ep_2)/t_2; //ERROR DIFERENCIAL
-            Ep_2 = ET_2;
-            iE_2 = Eip_2 + (t_2*ET_2); //ERROR INTEGRAL
-            Eip_2 = Ei_2;
-            t_2 = t_2 + (0.053 + (PID_2/100)); //TIEMPO 
-            PID_2 = (KP*ET_2)+(KI*iE_2)+(KD*dE_2); //PID
-            if(PID > 0){
-              GIRO.write(L_DERECHA);
-              delay(PID*10);
-            }
-            if(PID < 0){
-              GIRO.write(L_IZQUIERDA);
-              delay(PID*5);
-            }
-            //ULTRASONICO
-            if(DIST_FRENTE < 80 && DIST_FRENTE > 0){ //GIRO
-              VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-              GIRO.write(L_DERECHA); delay(500);
-              VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-              delay(1300);
-              GIRO.write(L_IZQUIERDA); delay(100); GIRO.write(L_CENTRO_D); delay(100); ACTIVO = 2;
-              VELOCIDAD = 80; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
-            }
-        }
+      if(ZONA != 13 && VUELTA != 4){
+        //PARED 1
+          if(PARED == 1){
+            //VARIABLES
+              SM = (DIST_IZQUIERDA);
+              SD = (20);
+            //PID
+              ET = SD - SM; //ERROR PROPORCIONAL 
+              dE = (ET - Ep)/t; //ERROR DIFERENCIAL
+              Ep = ET;
+              iE = Eip + (t*ET); //ERROR INTEGRAL
+              Eip = Ei;
+              t = t + (0.053 + (PID/100)); //TIEMPO 
+              PID = (KP*ET)+(KI*iE)+(KD*dE); //PID
+              if(DIST_IZQUIERDA < 40 || DIST_IZQUIERDA < 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*10);
+              }
+              //ULTRASONICO
+              if(DIST_DERECHA < 40  || DIST_DERECHA < 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*5);
+              }
+            //VARIABLES
+              SM_2 = (ANGULO);
+              SD_2 = (90*ZONA);
+            //PID
+              //GIROSCOPIO
+              ET_2 = SD_2 - SM_2; //ERROR PROPORCIONAL 
+              dE_2 = (ET_2 - Ep_2)/t_2; //ERROR DIFERENCIAL
+              Ep_2 = ET_2;
+              iE_2 = Eip_2 + (t_2*ET_2); //ERROR INTEGRAL
+              Eip_2 = Ei_2;
+              t_2 = t_2 + (0.053 + (PID_2/100)); //TIEMPO 
+              PID_2 = (KP*ET_2)+(KI*iE_2)+(KD*dE_2); //PID
+              if(PID > 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*10);
+              }
+              if(PID < 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*5);
+              }
+              //ULTRASONICO
+              if(DIST_FRENTE < 80 && DIST_FRENTE > 0){ //GIRO
+                VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+                GIRO.write(L_DERECHA); delay(500);
+                VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+                delay(1300);
+                GIRO.write(L_IZQUIERDA); delay(100); GIRO.write(L_CENTRO_D); delay(100); ACTIVO = 2;
+                VELOCIDAD = 80; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+              }
+          }
+        //PARED 2
+          if(PARED == 2){
+            //VARIABLES
+              SM = (DIST_DERECHA);
+              SD = (20);
+            //PID
+              ET = SD - SM; //ERROR PROPORCIONAL 
+              dE = (ET - Ep)/t; //ERROR DIFERENCIAL
+              Ep = ET;
+              iE = Eip + (t*ET); //ERROR INTEGRAL
+              Eip = Ei;
+              t = t + (0.053 + (PID/100)); //TIEMPO 
+              PID = (KP*ET)+(KI*iE)+(KD*dE); //PID
+              if(DIST_DERECHA < 40 || DIST_DERECHA < 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*10);
+              }
+              //ULTRASONICO
+              if(DIST_IZQUIERDA < 40  || DIST_IZQUIERDA < 0){
+                GIRO.write(L_DERECHA);
+                delay(PID*5);
+              }
+            //VARIABLES
+              SM_2 = (ANGULO);
+              SD_2 = (90*ZONA);
+            //PID
+              //GIROSCOPIO
+              ET_2 = SD_2 - SM_2; //ERROR PROPORCIONAL 
+              dE_2 = (ET_2 - Ep_2)/t_2; //ERROR DIFERENCIAL
+              Ep_2 = ET_2;
+              iE_2 = Eip_2 + (t_2*ET_2); //ERROR INTEGRAL
+              Eip_2 = Ei_2;
+              t_2 = t_2 + (0.053 + (PID_2/100)); //TIEMPO 
+              PID_2 = (KP*ET_2)+(KI*iE_2)+(KD*dE_2); //PID
+              if(PID > 0){
+                GIRO.write(L_DERECHA);
+                delay(PID*10);
+              }
+              if(PID < 0){
+                GIRO.write(L_IZQUIERDA);
+                delay(PID*5);
+              }
+              //ULTRASONICO
+              if(DIST_FRENTE < 80 && DIST_FRENTE > 0){ //GIRO
+                VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+                GIRO.write(L_DERECHA); delay(500);
+                VELOCIDAD = 50; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+                delay(1300);
+                GIRO.write(L_IZQUIERDA); delay(100); GIRO.write(L_CENTRO_D); delay(100); ACTIVO = 2;
+                VELOCIDAD = 80; PWM = map(VELOCIDAD, 0, 100, 0, 250); analogWrite(ENB, PWM);
+              }
+          }
+      }
     }
   }
  
